@@ -7,3 +7,4 @@ router.post("/registerbyemail", Signup);
 router.post("/loginbyemail", Login);
 
 export default router;
+ 
