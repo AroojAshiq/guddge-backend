@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connnectDb from "./config/db.js";
 import router from "./routes/userRoutes.js";
+import adminroute from "./routes/adminRoutes.js";
+import contractorRoute from "./routes/contractorRoutes.js";
+import clientRoute from "./routes/clientRoutes.js";
 
 const app = express();
 app.use(express.json());
@@ -13,6 +16,9 @@ const MONDO_DB = process.env.DATABASE_URL;
 const isConnected = await connnectDb(MONDO_DB);
 
 app.use("/", router);
+app.use("/", adminroute);
+app.use("/", contractorRoute);
+app.use("/", clientRoute);
 
 app.get("/", (req, res) => {
   res.send("welcome");
