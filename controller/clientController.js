@@ -5,15 +5,14 @@ const createClient = async (req, res) => {
   const {
     clientName,
     email,
-    jobTitle,
     phoneNumber,
     DOB,
-    joiningDate,
-    totalYearExperince,
+    identificationNumber,
     guddgeEmailPlan,
-    agreement,
-    agreementEndDate,
+    companyName,
+    socialSecurityNumber,
   } = req.body;
+  // console.log(req.body);
   const user = await Client.findOne({ email: email });
   if (user) {
     res.status(400).json({
@@ -22,26 +21,23 @@ const createClient = async (req, res) => {
     });
   } else {
     if (
-      (clientName && email && jobTitle && phoneNumber,
+      (clientName && email && phoneNumber,
       DOB &&
-        joiningDate &&
-        totalYearExperince &&
+        identificationNumber &&
         guddgeEmailPlan &&
-        agreement &&
-        agreementEndDate)
+        companyName &&
+        socialSecurityNumber)
     ) {
       try {
         const newUser = new Client({
           clientName: clientName,
           email: email,
-          jobTitle: jobTitle,
           phoneNumber: phoneNumber,
           DOB: DOB,
-          joiningDate: joiningDate,
-          totalYearExperince: totalYearExperince,
+          identificationNumber: identificationNumber,
+          companyName: companyName,
           guddgeEmailPlan: guddgeEmailPlan,
-          agreement: agreement,
-          agreementEndDate: agreementEndDate,
+          socialSecurityNumber: socialSecurityNumber,
         });
         await newUser.save();
 

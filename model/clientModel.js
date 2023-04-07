@@ -12,26 +12,21 @@ const clientSchema = mongoose.Schema({
     trim: true,
     unique: true,
   },
-  jobTitle: {
-    type: String,
-    required: true,
-    trim: true,
-  },
   phoneNumber: {
     type: String,
     required: true,
     trim: true,
   },
   DOB: {
-    type: Date,
+    type: String,
     required: true,
   },
-  joiningDate: {
-    type: Date,
+  identificationNumber: {
+    type: String,
     required: true,
   },
-  totalYearExperince: {
-    type: Number,
+  companyName: {
+    type: String,
     required: true,
   },
   guddgeEmailPlan: {
@@ -39,19 +34,10 @@ const clientSchema = mongoose.Schema({
     required: true,
     trim: true,
   },
-  agreement: {
+  socialSecurityNumber: {
     type: String,
     required: true,
     trim: true,
-  },
-  agreementEndDate: {
-    type: Date,
-    required: true,
-  },
-  role: {
-    type: Boolean,
-    required: true,
-    default: false,
   },
 });
 

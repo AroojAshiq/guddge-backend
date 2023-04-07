@@ -23,15 +23,15 @@ const contractorSchema = mongoose.Schema({
     trim: true,
   },
   DOB: {
-    type: Date,
+    type: String,
     required: true,
   },
   joiningDate: {
-    type: Date,
+    type: String,
     required: true,
   },
   totalYearExperince: {
-    type: Number,
+    type: String,
     required: true,
   },
   guddgeEmailPlan: {
@@ -45,13 +45,32 @@ const contractorSchema = mongoose.Schema({
     trim: true,
   },
   agreementEndDate: {
-    type: Date,
+    type: String,
     required: true,
   },
-  role: {
-    type: Boolean,
+  shore: {
+    type: String,
     required: true,
-    default: false,
+  },
+  companyName: {
+    type: String,
+    required: true,
+  },
+  identificationNumber: {
+    type: String,
+    required: true,
+  },
+  socialSecurityNumber: {
+    type: String,
+    required: true,
+  },
+  mailingAddress: {
+    type: String,
+    required: true,
+  },
+  emailingAddressForSoftCopies: {
+    type: String,
+    required: true,
   },
 });
 

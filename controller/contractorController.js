@@ -13,7 +13,14 @@ const createContractor = async (req, res) => {
     guddgeEmailPlan,
     agreement,
     agreementEndDate,
+    shore,
+    companyName,
+    identificationNumber,
+    socialSecurityNumber,
+    mailingAddress,
+    emailingAddressForSoftCopies,
   } = req.body;
+  // console.log(req.body);
   const user = await Contractor.findOne({ email: email });
   if (user) {
     res.status(400).json({
@@ -28,7 +35,13 @@ const createContractor = async (req, res) => {
         totalYearExperince &&
         guddgeEmailPlan &&
         agreement &&
-        agreementEndDate)
+        shore &&
+        agreementEndDate &&
+        companyName &&
+        identificationNumber &&
+        socialSecurityNumber &&
+        mailingAddress &&
+        emailingAddressForSoftCopies)
     ) {
       try {
         const newUser = new Contractor({
@@ -42,9 +55,14 @@ const createContractor = async (req, res) => {
           guddgeEmailPlan: guddgeEmailPlan,
           agreement: agreement,
           agreementEndDate: agreementEndDate,
+          shore: shore,
+          companyName: companyName,
+          identificationNumber: identificationNumber,
+          socialSecurityNumber: socialSecurityNumber,
+          mailingAddress: mailingAddress,
+          emailingAddressForSoftCopies: emailingAddressForSoftCopies,
         });
         await newUser.save();
-
         const saveUser = await Contractor.findOne({ email: email });
         const token = jwt.sign(
           { userId: saveUser._id },
