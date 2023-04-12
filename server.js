@@ -6,6 +6,7 @@ import router from "./routes/userRoutes.js";
 import adminroute from "./routes/adminRoutes.js";
 import contractorRoute from "./routes/contractorRoutes.js";
 import clientRoute from "./routes/clientRoutes.js";
+import timeSheetRouter from "./routes/timeSheetRoutes.js";
 
 const app = express();
 app.use(express.json());
@@ -19,6 +20,7 @@ app.use("/", router);
 app.use("/", adminroute);
 app.use("/", contractorRoute);
 app.use("/", clientRoute);
+app.use("/", timeSheetRouter);
 
 app.get("/", (req, res) => {
   res.send("welcome");
