@@ -2,18 +2,8 @@ import Admin from "../model/adminModel.js";
 import jwt from "jsonwebtoken";
 
 const createAdmin = async (req, res) => {
-  const {
-    adminName,
-    email,
-    jobTitle,
-    phoneNumber,
-    DOB,
-    joiningDate,
-    totalYearExperince,
-    guddgeEmailPlan,
-    agreement,
-    agreementEndDate,
-  } = req.body;
+  const { adminName, email, phoneNumber, DOB } = req.body;
+  // console.log(req.body);
   const user = await Admin.findOne({ email: email });
   if (user) {
     res.status(400).json({
@@ -21,27 +11,13 @@ const createAdmin = async (req, res) => {
       message: "Admin already exist against this email",
     });
   } else {
-    if (
-      (adminName && email && jobTitle && phoneNumber,
-      DOB &&
-        joiningDate &&
-        totalYearExperince &&
-        guddgeEmailPlan &&
-        agreement &&
-        agreementEndDate)
-    ) {
+    if ((adminName && email && phoneNumber, DOB)) {
       try {
         const newUser = new Admin({
           adminName: adminName,
           email: email,
-          jobTitle: jobTitle,
           phoneNumber: phoneNumber,
           DOB: DOB,
-          joiningDate: joiningDate,
-          totalYearExperince: totalYearExperince,
-          guddgeEmailPlan: guddgeEmailPlan,
-          agreement: agreement,
-          agreementEndDate: agreementEndDate,
         });
         await newUser.save();
 
@@ -56,7 +32,6 @@ const createAdmin = async (req, res) => {
           message: "Admin created successful",
           userID: saveUser._id,
           adminName: saveUser.adminName,
-          //   role: saveUser.role,
           token: token,
         });
       } catch (error) {
