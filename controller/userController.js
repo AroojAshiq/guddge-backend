@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 const Signup = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, role } = req.body;
   const user = await User.findOne({ email: email });
   if (user) {
     res.status(400).json({
@@ -11,7 +11,7 @@ const Signup = async (req, res) => {
       message: "User already exist",
     });
   } else {
-    if (name && email && password) {
+    if (name && email && password && role) {
       try {
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(password, salt);
@@ -20,6 +20,7 @@ const Signup = async (req, res) => {
           name: name,
           email: email,
           password: hashPassword,
+          role: role,
         });
         await newUser.save();
 
@@ -35,6 +36,7 @@ const Signup = async (req, res) => {
           userID: saveUser._id,
           name: saveUser.name,
           email: saveUser.email,
+          role: saveUser.role,
           token: token,
         });
       } catch (error) {
@@ -70,7 +72,7 @@ const Login = async (req, res) => {
             userId: user._id,
             userName: user.userName,
             email: user.email,
-            filename: user.filename,
+            role: user.role,
             token: token,
           });
         } else {
